@@ -1,30 +1,24 @@
-from wknn.interfaces.node import Node
+from wknn.models.units.dummy import Dummy
+from functools import reduce
+from operator import add, sub, mul
 
-class Perceptron(Node):
+class Perceptron(Dummy):
 
-    @property
-    def X(self)->list:
-        return []
-    @X.setter
-    def X_setter(self,new_value)->None:
-        return
-    #
-    @property
-    def W(self)->list:
-        return []
-    @W.setter
-    def W_setter(self,new_value)->None:
-        return
-    #
-    @property 
-    def y(self)->float:
-        return []
-    #
-    @property
-    def ytrain(self)->float:
-        return []
-    #
+    def __init__(self):
+        super().__init__()
+        self._learning_rate = 1.0
+
     def run(self):
-        return
+        zipped = (zip(self.X,self.W))
+        self._y = (x*w for x,w in (zipped))
+        pass
     def train(self):
-        return
+        self._error = self.ytrain - self.y
+        if self._error >=0.0:
+            operation = sub
+        else:
+            operation = sum
+        X = (self._learning_rate*x for x in self.X)
+        self.W = list(map(operation,zip(self.W,X)))
+        pass
+
