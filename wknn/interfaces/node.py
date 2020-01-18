@@ -20,10 +20,16 @@ class Node(object):
     # Y 
     def y_getter(self)->float:
         return []
-    W = abc.abstractproperty(fget=y_getter,fset=None,doc="Output value of Node")
+    y = abc.abstractproperty(fget=y_getter,fset=None,doc="Output value of Node")
     #
     # Y 
     def ytrain_getter(self)->float:
         return []
-    W = abc.abstractproperty(fget=ytrain_getter,fset=None,doc="Intended output value of Node")
+    ytrain = abc.abstractproperty(fget=ytrain_getter,fset=None,doc="Intended output value of Node")
     #
+    @abc.abstractmethod
+    def run(self):
+        return
+    @abc.abstractmethod
+    def train(self):
+        return
