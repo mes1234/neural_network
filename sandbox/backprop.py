@@ -11,7 +11,7 @@ def sum_y(W,X):
     return res
 
 def sigmoid_funct(x):
-    return (math.exp(x)/(1.+math.exp(x))-0.5)*2
+    return (mat h.exp(x)/(1.+math.exp(x))-0.5)*2
 
 def derive(W,X,index,delta,funct,act_funct,yact):
     W[index]= W[index]+delta

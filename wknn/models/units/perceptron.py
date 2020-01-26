@@ -13,9 +13,10 @@ class Perceptron(Dummy):
         self.output_func = step_funct
 
     def run(self):
-        zipped = (zip(self.X,self.W))
+        zipped = (zip(self.X, self.W))
         self._y = (x*w for x,w in (zipped))
         pass
+
     def train(self):
         X = (self._learning_rate*x for x in self.X)
         self.W = list(map(lambda x:x[0]+self.error*x[1],zip(self.W,X)))
