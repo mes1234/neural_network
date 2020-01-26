@@ -34,6 +34,10 @@ class Node(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def ytrain(self)->None:
         return
+    @property
+    @abc.abstractmethod
+    def error(self)->None:
+        return
 
     @abc.abstractmethod
     def run(self):

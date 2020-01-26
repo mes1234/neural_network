@@ -1,15 +1,10 @@
-from wknn.models.units.perceptron import Perceptron
+from wknn.models.units.sigmoid_neuron import Sigmoid_Neuron
 from itertools import tee
 
-def test_run():
-    p = Perceptron()
-    p.X = [1.0,2.0,3.0]
-    p.W = [0.1,0.2,0.3]
-    assert p.y == 1.4
-
-def test_train_step_function():
+def test_train_sigmoid_function():
     from matplotlib import pyplot as plt
-    p = Perceptron()
+    from wknn.utilities.output_fuctions import sigmoid_funct
+    p = Sigmoid_Neuron()
     p.W = [5.5,2.50,-2.01]
     X = {
         1: ([1.0,1.5,-0.5],0),
@@ -29,8 +24,8 @@ def test_train_step_function():
             p.X = v[0]
             p.ytrain =v[1]
             y[k] = {
-                "output" : p.out,
-                "error":p.error
+                "error":p.error,
+                "goal":v[1]
             }
             Xs.append(range(-10,10,1))
             Ys.append(list(map(lambda x:(-p.W[0]-p.W[1]*x)/p.W[2],range(-10,10,1))))
@@ -56,9 +51,10 @@ def test_train_step_function():
     except:
         pass
     def check_error(x):
-        if x == 0:
+        if x['goal']-x['error'] >= 0:
             return True
         else:
             return False
-    assert all(map(lambda x: check_error(x['error']),y.values()))
+    assert all(map(lambda x: check_error(x),y.values()))
     pass
+

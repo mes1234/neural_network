@@ -40,10 +40,5 @@ class Dummy(Node):
     def ytrain(self,new_value)->float:
         self._ytrain = new_value
 
-    def run(self):
-        pass
-    
-    def train(self):
-        pass
 
 Node.register(Dummy)
