@@ -8,3 +8,10 @@ class Sigmoid_Neuron(Perceptron):
     def __init__(self):
         super().__init__()
         self.output_func = sigmoid_funct
+
+    @property
+    def d(self)->list:
+        '''
+        derivative of error over inputs
+        '''
+        return []
