@@ -1,36 +1,21 @@
 import abc
+from wknn.models.units.back_prop_neuron import Back_Prop_Neuron
 
 
 class Layer(metaclass=abc.ABCMeta):
 
     @property
     @abc.abstractmethod
-    def Items(self)->list:
+    def __init__(self,*,inputs_count, neuron_count  ,neuron_type = Back_Prop_Neuron  )->list:
         return
-    
-    @Items.setter
-    @abc.abstractmethod
-    def Items(self, new_value) -> None:
-        return
-
-    @abc.abstractmethod
-    def run()-> None:
-        return
-
-    @Input.setter
-    @abc.abstractmethod
-    def Input(self,input_vector:list)-> None:
-        return
+   
 
     @property
     @abc.abstractmethod
-    def Output(self)->list:
+    def X(self)->list:
         return
 
+    @X.setter
     @abc.abstractmethod
-    def connect(self,previous:Layer,next:Layer)->None
+    def X(self,value:list)->None:
         return
-
-    @abc.abstractmethod
-    def train(self) -> None:
-
