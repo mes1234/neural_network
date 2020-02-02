@@ -46,15 +46,12 @@ def test_train_step_function():
     m1,m2 = tee(m)
     p1,p2 = tee(p)
     import os
-    try:
-        os.environ['DEBUG_WKNN']
+    if os.environ['DEBUG_WKNN'] == 'TRUE':
         plt.plot(Xs[-1],Ys[-1],"--",lw=2.0)
         plt.plot(Xs[0],Ys[0],"-",lw=2.0)
         plt.plot([x for x,y in m1],[y for x,y in m2],"x")
         plt.plot([x for x,y in p1],[y for x,y in p2],"s")
         plt.show()
-    except:
-        pass
     def check_error(x):
         if x == 0:
             return True

@@ -7,6 +7,7 @@ class Back_Prop_Neuron(Sigmoid_Neuron):
     def __init__(self):
         super().__init__()
         self.delta = 0.05
+        self._learning_rate = 2.0
     
     
     def _calculate_dout(self,index):
@@ -17,8 +18,16 @@ class Back_Prop_Neuron(Sigmoid_Neuron):
         return diff
 
     def _adjust_W(self,w_d):
-        return w_d[0]+self.error*w_d[1]#*self._learning_rate
+        return w_d[0]+self.error*w_d[1]*self._learning_rate
 
+    @property
+    def back_prop_error(self)->list:
+        '''
+        return back propagated list of error
+        '''
+        d = list(self.d)
+        self._sum_d = sum(d) 
+        return   map(lambda x:x/self._sum_d*self.error,d) 
     @property
     def d(self)->list:
         '''

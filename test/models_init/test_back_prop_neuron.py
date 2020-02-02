@@ -18,7 +18,7 @@ def test_train_sigmoid_function():
     y = {}
     Xs = []
     Ys = []
-    for ii in range(20):
+    for ii in range(10):
         for k,v in X.items():
             p.X = v[0]
             p.ytrain =v[1]
@@ -40,15 +40,12 @@ def test_train_sigmoid_function():
     m1,m2 = tee(m)
     p1,p2 = tee(p)
     import os
-    try:
-        os.environ['DEBUG_WKNN']
+    if os.environ['DEBUG_WKNN'] == 'TRUE':
         plt.plot(Xs[-1],Ys[-1],"--",lw=2.0)
         plt.plot(Xs[0],Ys[0],"-",lw=2.0)
         plt.plot([x for x,y in m1],[y for x,y in m2],"x")
         plt.plot([x for x,y in p1],[y for x,y in p2],"s")
         plt.show()
-    except:
-        pass
     def check_error(x):
         if x['goal']-x['error'] >= 0:
             return True
@@ -57,3 +54,13 @@ def test_train_sigmoid_function():
     assert all(map(lambda x: check_error(x),y.values()))
     pass
 
+
+def test_back_propagation():
+    p = Back_Prop_Neuron()
+    p.W = [0.5,-2.50,0.01]
+    p.X =[1.0,1.5,-0.5]
+    p.ytrain = 0.0
+    error = p.error
+    back_prop_error = p.back_prop_error
+    sum_back_prop_error = sum(back_prop_error)
+    assert abs(sum_back_prop_error - error)< 0.000001
