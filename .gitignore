@@ -1,5 +1,6 @@
 **/.vscode
 **/.git
 **/nn
+**/cov_html
 *.pyc
 .coverage

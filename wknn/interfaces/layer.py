@@ -29,3 +29,18 @@ class Layer(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def ytrain(self,value:list)->None:
         return
+
+    @property
+    @abc.abstractmethod
+    def error(self)->list:
+        return
+
+    @error.setter
+    @abc.abstractmethod
+    def error(self,value:list)->None:
+        return
+
+    @abc.abstractmethod
+    def train(self)->None:
+        return
+        
