@@ -19,3 +19,13 @@ class Layer(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def X(self,value:list)->None:
         return
+
+    @property
+    @abc.abstractmethod
+    def ytrain(self)->list:
+        return
+
+    @ytrain.setter
+    @abc.abstractmethod
+    def ytrain(self,value:list)->None:
+        return
