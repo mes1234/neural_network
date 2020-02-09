@@ -50,3 +50,31 @@ def test_train():
         plt.plot(ysmoothed)
         plt.show()
     assert ysmoothed[-1] < 0.1
+
+
+def test_train_consts():
+    def opt_funct(X):
+        return [0.0001,0.99]
+    
+    from random import random
+    from functools import reduce
+
+    l = Simple_Layer(inputs_count=3,neuron_count=2)
+    cumulative_error = []
+    for i in range(5000):
+        X=[1.0,random(),random()]
+        l.X = X
+        l.ytrain = opt_funct(X[1:])
+        error = l.error
+        cumulative_error.append(reduce((lambda x,y:x+abs(y)), error,0 ))
+        l.train()
+    from matplotlib import pyplot as plt 
+    from scipy.ndimage.filters import gaussian_filter1d
+    import os
+
+    ysmoothed = gaussian_filter1d(cumulative_error, sigma=6)
+    if os.environ['DEBUG_WKNN'] == 'TRUE':
+        plt.plot(cumulative_error,'x')
+        plt.plot(ysmoothed)
+        plt.show()
+    assert ysmoothed[-1] < 0.1
