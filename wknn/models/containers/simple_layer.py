@@ -75,3 +75,25 @@ class Simple_Layer(Layer):
         """
         for neuron in self._items:
             neuron.train()
+
+    @property
+    def out(self)->list:
+        """return response of layer
+        
+        Returns:
+            list -- [description]
+        """
+        res = list(map(lambda x:getattr(x,"out"),  self._items))
+        return res
+
+    @property
+    def back_prop_error(self)->list:
+        """collect error from every neuron and arranage it as it can be moved to prevoius layer
+        
+        Returns:
+            list -- [description]
+        """
+        res = list(map(lambda x:getattr(x,"back_prop_error"),  self._items))
+        zipped = zip(*res)
+        sum_error = list(map(lambda x:sum(x),zipped))
+        return sum_error

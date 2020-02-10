@@ -40,6 +40,23 @@ class Layer(metaclass=abc.ABCMeta):
     def error(self,value:list)->None:
         return
 
+
+    @error.setter
+    @abc.abstractmethod
+    def error(self,value:list)->None:
+        return
+
+    @property
+    @abc.abstractmethod
+    def out(self)->list:
+        return
+
+
+    @property
+    @abc.abstractmethod
+    def back_prop_error(self)->list:
+        return
+
     @abc.abstractmethod
     def train(self)->None:
         return
