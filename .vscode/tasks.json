@@ -6,12 +6,14 @@
         {
             "label": "run tests",
             "type": "shell",
-            "command": "${config:python.pythonPath}",
+            "command": "python",
             "args": [
                 "-m",
                 "pytest",
                 "test",
+                "--junitxml=report.xml",
                 "--cov-report","html:cov_html",
+                "--cov-report", "xml:cov.xml",
                 "--cov=wknn",
                 "test/"
             ],

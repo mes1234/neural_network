@@ -1,6 +1,9 @@
-# **/.vscode
+**/.vscode
+**/.scannerwork
 **/.git
 **/nn
 **/cov_html
 *.pyc
 .coverage
+*.html
+*.xml
