@@ -7,7 +7,7 @@ class Back_Prop_Neuron(Sigmoid_Neuron):
     def __init__(self):
         super().__init__()
         self.delta = 0.05
-        self._learning_rate = 2.0
+        self._learning_rate = 20.2
     
     
     def _calculate_dout(self,index):

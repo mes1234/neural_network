@@ -6,18 +6,25 @@ class Simple_Bridge(Bridge):
     def __init__(self, parent: Layer, child: Layer) -> None:
         self.parent = parent
         self.child = child
+        self.out = []
 
     def forward(self) -> None:
         """
         execute parent and pass its result to child as input
         """
-        pass
+        self.child.X =[1.] + self.parent.out
+        self.out = self.child.out
 
     def train(self) -> None:
         """
         train child and back propagate error to parent
         """
-        pass
+        self.forward()
+        bpe = self.child.back_prop_error
+        pout = self.parent.out
+        self.parent.ytrain = list(map(lambda x: x[0]+x[1],zip(pout,bpe[1:])))
+        self.child.train()
+        self.parent.train()
 
     @property
     def X(self)->list:

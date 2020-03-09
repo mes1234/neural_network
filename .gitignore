@@ -2,6 +2,7 @@
 **/.scannerwork
 **/.git
 **/nn
+**/sonnar
 **/cov_html
 *.pyc
 .coverage
